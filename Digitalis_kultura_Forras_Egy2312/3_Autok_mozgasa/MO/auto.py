@@ -6,4 +6,4 @@ class Auto:
         self.sebesseg = sebesseg
 
     def __repr__(self):
-        return f"{self.rendszam} - {self.ora} - {self.sebesseg} km/h"
+        return f"{self.rendszam} - {self.ora} - {self.perc} - {self.sebesseg} km/h"
