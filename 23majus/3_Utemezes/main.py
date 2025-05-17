@@ -73,6 +73,37 @@ def hatodik_feladat():
 
     print(f"Ezen a napon pontosan {ezen_a_napon}db tábor kezdődik")
 
+def hetedik_feladat():
+    tanulo_betujele = input("Adja meg a tanuló betűjelét: ").strip().upper()
+
+    tanulo_taborai = [t for t in taborok if tanulo_betujele in t.diakok]
+
+    tanulo_taborai.sort(key=lambda t: int(t.kezdo_honap))
+
+    with open("egytanulo.txt", "w", encoding='utf-8') as f:
+        for t in tanulo_taborai:
+            f.write(f"{t.kezdo_honap}.{t.kezdo_nap} - {t.zaro_honap}.{t.zaro_nap}\n")
+    
+    utkozes = False
+    if not tanulo_taborai:
+        print("A tanuló egy tábor iránt sem érdeklődött.")
+    else:
+        if len(tanulo_taborai) == 1:
+            print("Mivel a tanuló csak egy táborba jelentkezett, nincs ütközés")
+        else:
+            for i in range(1, len(tanulo_taborai)):
+                elozo = tanulo_taborai[i-1]
+                aktualis = tanulo_taborai[i]
+                if int(aktualis.kezdo_honap) <= int(elozo.zaro_honap) and int(aktualis.kezdo_nap) <= int(elozo.zaro_nap):
+                    utkozes = True
+                    break
+            if utkozes:
+                print("Van ütközés")
+            else:
+                print("Nincs ütközés")
+
+hetedik_feladat()
+
 
 
 
